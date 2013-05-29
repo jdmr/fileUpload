@@ -1,0 +1,11 @@
+.DS_Store
+target
+nb-configuration.xml
+nbactions.xml
+fileUpload.log**
+fileUpload-test.log**
+.idea
+*.iml
+.classpath
+.project
+.settings

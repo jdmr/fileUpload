@@ -28,7 +28,7 @@ To change the size of the uploads you can find that on [WebConfig.java](src/main
         return multipartResolver;
     }
 ```
-Is set to < 5Mb by default but you can change that to what you need.
+Is set to < 5Mb by default but you can change it to what you need.
 
 To change to a different database, you need to add the driver dependency on the [pom.xml](pom.xml) and change the database connection information in [fileUpload.properties](src/main/resources/fileUpload.properties).
 

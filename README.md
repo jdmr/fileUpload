@@ -9,7 +9,7 @@ mvn tomcat7:run
 ```
 The application is going to tell you its up, after it does go to [http://localhost:8080](http://localhost:8080) and check it out.
 
-## Technologies
+## Main tools
 + Spring MVC 3.2.1
 + Hibernate 4.1.9
 + H2 (embedded)

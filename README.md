@@ -7,4 +7,4 @@ Spring MVC (blueimp) jQuery File Upload. Based on blueimp's Grails plugin, just 
 
 mvn tomcat7:run
 
-Go to http://localhost:8080
+Go to [http://localhost:8080](http://localhost:8080)

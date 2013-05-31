@@ -33,6 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+import org.apache.commons.dbcp.BasicDataSource;
 
 @Configuration
 @EnableTransactionManagement
@@ -57,8 +58,6 @@ public class DataConfig {
     @Import(PropertyPlaceholderConfig.class)
     static class Production {
 
-        @Value("${hibernate.dialect}")
-        protected String hibernateDialect;
         @Value("${hibernate.show_sql}")
         protected String hibernateShowSql;
         @Value("${hibernate.hbm2ddl.auto}")
@@ -85,7 +84,6 @@ public class DataConfig {
             try {
                 factoryBean = new LocalSessionFactoryBean();
                 Properties pp = new Properties();
-                pp.setProperty("hibernate.dialect", hibernateDialect);
                 pp.setProperty("hibernate.show_sql", hibernateShowSql);
                 pp.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2DDL);
                 pp.setProperty("hibernate.cache.use_second_level_cache", hibernateSecondLevelCache);
@@ -105,11 +103,16 @@ public class DataConfig {
 
         @Bean
         public DataSource dataSource() {
-            DriverManagerDataSource ds = new DriverManagerDataSource();
+            BasicDataSource ds = new BasicDataSource();
             ds.setDriverClassName(jdbcDriver);
             ds.setUsername(jdbcUsername);
             ds.setPassword(jdbcPassword);
             ds.setUrl(jdbcUrl);
+            ds.setInitialSize(5);
+            ds.setMaxActive(10);
+            ds.setRemoveAbandoned(true);
+            ds.setLogAbandoned(true);
+            ds.setValidationQuery("SELECT 1");
             return ds;
         }
     }
@@ -119,8 +122,6 @@ public class DataConfig {
     @Import(PropertyPlaceholderConfig.class)
     static class Tests {
 
-        @Value("${test.hibernate.dialect}")
-        protected String testHibernateDialect;
         @Value("${test.hibernate.show_sql}")
         protected String testHibernateShowSql;
         @Value("${test.hibernate.hbm2ddl.auto}")
@@ -146,7 +147,6 @@ public class DataConfig {
             try {
                 factoryBean = new LocalSessionFactoryBean();
                 Properties pp = new Properties();
-                pp.setProperty("hibernate.dialect", testHibernateDialect);
                 pp.setProperty("hibernate.show_sql", testHibernateShowSql);
                 pp.setProperty("hibernate.hbm2ddl.auto", testHibernateHbm2DDL);
                 pp.setProperty("hibernate.cache.use_second_level_cache", testHibernateSecondLevelCache);

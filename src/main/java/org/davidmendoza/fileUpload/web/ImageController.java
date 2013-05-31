@@ -60,7 +60,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  * @author jdmr
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping
 @Import(PropertyPlaceholderConfig.class)
 public class ImageController {
     
@@ -77,7 +77,7 @@ public class ImageController {
         return "image/index";
     }
     
-    @RequestMapping(value = "/upload", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public @ResponseBody Map list() {
         log.debug("uploadGet called");
         List<Image> list = imageDao.list();
@@ -92,7 +92,7 @@ public class ImageController {
         return files;
     }
     
-    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody Map upload(MultipartHttpServletRequest request, HttpServletResponse response) {
         log.debug("uploadPost called");
         Iterator<String> itr = request.getFileNames();

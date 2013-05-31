@@ -4,10 +4,10 @@ FileUpload
 Spring MVC (blueimp) jQuery File Upload. Based on blueimp's Grails plugin, just ported it back to spring mvc.
 
 ## Run
-
+```maven
 mvn tomcat7:run
-
-After application tells you its up go to [http://localhost:8080](http://localhost:8080)
+```
+The application is going to tell you its up, after it does go to [http://localhost:8080](http://localhost:8080) and check it out.
 
 ## Technologies
 + Spring MVC 3.2.1

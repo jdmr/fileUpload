@@ -9,3 +9,4 @@ fileUpload-test.log**
 .classpath
 .project
 .settings
+/src/main/resources/rebel.xml

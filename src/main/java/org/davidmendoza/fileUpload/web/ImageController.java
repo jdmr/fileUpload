@@ -83,12 +83,13 @@ public class ImageController {
         List<Image> list = imageDao.list();
         for(Image image : list) {
             image.setUrl("/picture/"+image.getId());
-            image.setThumbnail_url("/thumbnail/"+image.getId());
-            image.setDelete_url("/delete/"+image.getId());
-            image.setDelete_type("DELETE");
+            image.setThumbnailUrl("/thumbnail/"+image.getId());
+            image.setDeleteUrl("/delete/"+image.getId());
+            image.setDeleteType("DELETE");
         }
         Map<String, Object> files = new HashMap<>();
         files.put("files", list);
+        log.debug("Returning: {}", files);
         return files;
     }
     
@@ -127,9 +128,9 @@ public class ImageController {
                 image = imageDao.create(image);
                 
                 image.setUrl("/picture/"+image.getId());
-                image.setThumbnail_url("/thumbnail/"+image.getId());
-                image.setDelete_url("/delete/"+image.getId());
-                image.setDelete_type("DELETE");
+                image.setThumbnailUrl("/thumbnail/"+image.getId());
+                image.setDeleteUrl("/delete/"+image.getId());
+                image.setDeleteType("DELETE");
                 
                 list.add(image);
                 

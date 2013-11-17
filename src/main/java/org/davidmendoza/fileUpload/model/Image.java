@@ -66,11 +66,11 @@ public class Image implements Serializable {
     @Transient
     private String url;
     @Transient
-    private String thumbnail_url;
+    private String thumbnailUrl;
     @Transient
-    private String delete_url;
+    private String deleteUrl;
     @Transient
-    private String delete_type;
+    private String deleteType;
     
     public Image() {}
 
@@ -201,45 +201,50 @@ public class Image implements Serializable {
     }
 
     /**
-     * @return the thumbnail_url
+     * @return the thumbnailUrl
      */
-    public String getThumbnail_url() {
-        return thumbnail_url;
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 
     /**
-     * @param thumbnail_url the thumbnail_url to set
+     * @param thumbnailUrl the thumbnailUrl to set
      */
-    public void setThumbnail_url(String thumbnail_url) {
-        this.thumbnail_url = thumbnail_url;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     /**
-     * @return the delete_url
+     * @return the deleteUrl
      */
-    public String getDelete_url() {
-        return delete_url;
+    public String getDeleteUrl() {
+        return deleteUrl;
     }
 
     /**
-     * @param delete_url the delete_url to set
+     * @param deleteUrl the deleteUrl to set
      */
-    public void setDelete_url(String delete_url) {
-        this.delete_url = delete_url;
+    public void setDeleteUrl(String deleteUrl) {
+        this.deleteUrl = deleteUrl;
     }
 
     /**
-     * @return the delete_type
+     * @return the deleteType
      */
-    public String getDelete_type() {
-        return delete_type;
+    public String getDeleteType() {
+        return deleteType;
     }
 
     /**
-     * @param delete_type the delete_type to set
+     * @param deleteType the deleteType to set
      */
-    public void setDelete_type(String delete_type) {
-        this.delete_type = delete_type;
+    public void setDeleteType(String deleteType) {
+        this.deleteType = deleteType;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" + "name=" + name + ", thumbnailFilename=" + thumbnailFilename + ", newFilename=" + newFilename + ", contentType=" + contentType + ", url=" + url + ", thumbnailUrl=" + thumbnailUrl + ", deleteUrl=" + deleteUrl + ", deleteType=" + deleteType + '}';
     }
 
 }

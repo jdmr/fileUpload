@@ -20,7 +20,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan(basePackages = "org.davidmendoza.fileUpload")
+@ComponentScan(basePackages = {
+    "org.davidmendoza.fileUpload.model",
+    "org.davidmendoza.fileUpload.dao",
+    "org.davidmendoza.fileUpload.utils"})
 @PropertySource("classpath:fileUpload.properties")
 public class ComponentConfig {
 

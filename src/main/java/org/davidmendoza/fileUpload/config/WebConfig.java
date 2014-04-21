@@ -38,13 +38,16 @@ import org.springframework.web.servlet.view.JstlView;
 
 import java.util.List;
 import java.util.Locale;
+import org.springframework.context.annotation.ComponentScan;
 
 @Configuration
 @EnableWebMvc
+@ComponentScan(basePackages = {"org.davidmendoza.fileUpload.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Messages to support internationalization/localization.
+     * @return 
      */
     @Bean
     public MessageSource messageSource() {
@@ -68,11 +71,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Supports FileUploads.
+     * @return 
      */
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(5000000);
+        multipartResolver.setMaxUploadSize(50000000);
         return multipartResolver;
     }
 

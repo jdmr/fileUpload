@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Image Preview & Resize Plugin 1.6.0
+ * jQuery File Upload Image Preview & Resize Plugin 1.7.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2013, Sebastian Tschan
@@ -9,8 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-/*jslint nomen: true, unparam: true, regexp: true */
-/*global define, window, document, DataView, Blob, Uint8Array */
+/* jshint nomen:false */
+/* global define, window, Blob */
 
 (function (factory) {
     'use strict';
@@ -96,6 +96,10 @@
             action: 'setImage',
             name: '@imagePreviewName',
             disabled: '@disableImagePreview'
+        },
+        {
+            action: 'deleteImageReferences',
+            disabled: '@disableImageReferencesDeletion'
         }
     );
 
@@ -106,7 +110,7 @@
         options: {
             // The regular expression for the types of images to load:
             // matched against the file type:
-            loadImageFileTypes: /^image\/(gif|jpeg|png)$/,
+            loadImageFileTypes: /^image\/(gif|jpeg|png|svg\+xml)$/,
             // The maximum file size of images to load:
             loadImageMaxFileSize: 10000000, // 10MB
             // The maximum width of resized images:
@@ -201,6 +205,12 @@
                             return dfd.promise();
                         }
                     }
+                    // Prevent orienting the same image twice:
+                    if (data.orientation) {
+                        delete options.orientation;
+                    } else {
+                        data.orientation = options.orientation;
+                    }
                 }
                 if (img) {
                     resolve(loadImage.scale(img, options));
@@ -284,6 +294,16 @@
             setImage: function (data, options) {
                 if (data.preview && !options.disabled) {
                     data.files[data.index][options.name || 'preview'] = data.preview;
+                }
+                return data;
+            },
+
+            deleteImageReferences: function (data, options) {
+                if (!options.disabled) {
+                    delete data.img;
+                    delete data.canvas;
+                    delete data.preview;
+                    delete data.imageHead;
                 }
                 return data;
             }

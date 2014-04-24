@@ -125,6 +125,7 @@ public class ImageController {
                 image.setNewFilename(newFilename);
                 image.setContentType(contentType);
                 image.setSize(mpf.getSize());
+                image.setThumbnailSize(thumbnailFile.length());
                 image = imageDao.create(image);
                 
                 image.setUrl("/picture/"+image.getId());
@@ -164,7 +165,7 @@ public class ImageController {
         Image image = imageDao.get(id);
         File imageFile = new File(fileUploadDirectory+"/"+image.getThumbnailFilename());
         response.setContentType(image.getContentType());
-        response.setContentLength(image.getSize().intValue());
+        response.setContentLength(image.getThumbnailSize().intValue());
         try {
             InputStream is = new FileInputStream(imageFile);
             IOUtils.copy(is, response.getOutputStream());

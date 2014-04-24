@@ -59,6 +59,7 @@ public class Image implements Serializable {
     private String contentType;
     @Column(name = "size_")
     private Long size;
+    private Long thumbnailSize;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     @Temporal(TemporalType.TIMESTAMP)
@@ -156,6 +157,20 @@ public class Image implements Serializable {
      */
     public void setSize(Long size) {
         this.size = size;
+    }
+
+    /**
+     * @return the thumbnailSize
+     */
+    public Long getThumbnailSize() {
+        return thumbnailSize;
+    }
+
+    /**
+     * @param thumbnailSize the thumbnailSize to set
+     */
+    public void setThumbnailSize(Long thumbnailSize) {
+        this.thumbnailSize = thumbnailSize;
     }
 
     /**
